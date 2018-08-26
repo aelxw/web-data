@@ -1,0 +1,1 @@
+C:\Users\Alexander\Anaconda3\python.exe %cd%\src\Automated.py %date:~-4,4%%date:~-10,2%%date:~-7,2% gen

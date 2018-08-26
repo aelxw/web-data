@@ -1,0 +1,62 @@
+[
+	{
+		"place":"TORONTO",
+		"name":"CITY",
+		"stationid":31688
+	},
+	{
+		"place":"TORONTO",
+		"name":"INTL A",
+		"stationid":51459
+	},
+	{
+		"place":"DELHI",
+		"name":"CS",
+		"stationid":27528
+	},
+	{
+		"place":"TILLSONBURG",
+		"name":"WWTP",
+		"stationid":4699
+	},
+	{
+		"place":"OTTAWA",
+		"name":"INTL A",
+		"stationid":49568
+	},
+	{
+		"place":"OTTAWA",
+		"name":"CDA RCS",
+		"stationid":30578
+	},
+	{
+		"place":"SARNIA",
+		"name":"SARNIA",
+		"stationid":48373
+	},
+	{
+		"place":"SARNIA",
+		"name":"CLIMATE",
+		"stationid":44323
+	},
+	{
+		"place":"TIMMINS",
+		"name":"A",
+		"stationid":50460
+	},
+	{
+		"place":"TIMMINS",
+		"name":"CLIMATE",
+		"stationid":47547
+	},
+	{
+		"place":"THUNDER BAY",
+		"name":"CS",
+		"stationid":30682
+	},
+	{
+		"place":"THUNDER BAY",
+		"name":"THUNDER BAY",
+		"stationid":49389
+	}
+]
