@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[74]:
+# In[1]:
 
 
 import WebData as wd
@@ -12,7 +12,7 @@ import pandas as pd
 # In[77]:
 
 
-folderpath = "C:/Users/Alexander/Jupyter/Aegent/archive/"
+folderpath = "C:/Users/Alexander/Jupyter/web-data/archive/"
 yyyymmdd = sys.argv[1]
 filename = sys.argv[2]
 

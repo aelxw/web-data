@@ -1,1 +1,1 @@
-C:\Users\Alexander\Anaconda3\python.exe C:\Users\Alexander\Jupyter\Aegent\src\Server.py
+C:\Users\Alexander\Anaconda3\python.exe %cd%\src\Server.py
