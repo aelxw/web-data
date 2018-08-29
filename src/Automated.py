@@ -12,7 +12,7 @@ import pandas as pd
 # In[77]:
 
 
-folderpath = "C:/Users/Alexander/Jupyter/web-data/archive/"
+folderpath = "T:\\Web Data\\"
 yyyymmdd = sys.argv[1]
 filename = sys.argv[2]
 

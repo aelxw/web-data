@@ -58,5 +58,10 @@
 		"place":"THUNDER BAY",
 		"name":"THUNDER BAY",
 		"stationid":49389
+	},
+	{
+		"place":"SPRINGFIELD",
+		"name":"CS",
+		"stationid":50430
 	}
 ]
