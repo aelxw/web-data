@@ -4,8 +4,7 @@ Public Function getJsonData(endpoint As String, param As String) As String
 Dim req As New MSXML2.ServerXMLHTTP60
 Dim server As String
 Dim url As String
-server = "http://localhost:9999"
-url = server & endpoint & "?date=" & param
+url = conServer & endpoint & "?date=" & param
 req.Open "GET", url
 req.send
 getJsonData = req.responseText
