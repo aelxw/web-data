@@ -24,7 +24,7 @@ import sys
 cwd = "C:/Users/pchong/web-data/src/"
 
 
-# In[3]:
+# In[5]:
 
 
 # Get NYMEX data
@@ -120,7 +120,7 @@ def nymex(yyyymmdd):
     return pd.concat(dfs, ignore_index=True)
 
 
-# In[4]:
+# In[6]:
 
 
 # Get NGX data
@@ -189,7 +189,7 @@ def ngx(yyyymmdd):
     
 
 
-# In[5]:
+# In[7]:
 
 
 # Combined NYMEX and NGX data into settlement data
@@ -198,7 +198,7 @@ def settlement(yyyymmdd):
     return pd.concat([nymex(yyyymmdd), ngx(yyyymmdd)], ignore_index=True)
 
 
-# In[6]:
+# In[8]:
 
 
 # Get HOEP data
@@ -222,7 +222,7 @@ def hoep(yyyymmdd):
     return df
 
 
-# In[1]:
+# In[9]:
 
 
 # Get Generator Output and Capability data
