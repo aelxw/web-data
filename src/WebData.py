@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[3]:
+# In[12]:
 
 
 from bs4 import BeautifulSoup
@@ -16,15 +16,17 @@ import io
 import json
 import traceback
 import sys
+import os
 
 
-# In[4]:
+# In[19]:
 
 
 cwd = "C:/Users/pchong/web-data/src/"
+#cwd = os.getcwd() + "\\"
 
 
-# In[5]:
+# In[3]:
 
 
 # Get NYMEX data
@@ -120,7 +122,7 @@ def nymex(yyyymmdd):
     return pd.concat(dfs, ignore_index=True)
 
 
-# In[6]:
+# In[4]:
 
 
 # Get NGX data
@@ -189,7 +191,7 @@ def ngx(yyyymmdd):
     
 
 
-# In[7]:
+# In[5]:
 
 
 # Combined NYMEX and NGX data into settlement data
@@ -198,7 +200,7 @@ def settlement(yyyymmdd):
     return pd.concat([nymex(yyyymmdd), ngx(yyyymmdd)], ignore_index=True)
 
 
-# In[8]:
+# In[6]:
 
 
 # Get HOEP data
@@ -222,7 +224,7 @@ def hoep(yyyymmdd):
     return df
 
 
-# In[9]:
+# In[59]:
 
 
 # Get Generator Output and Capability data
@@ -240,8 +242,20 @@ def gen(yyyymmdd):
         name = g.find("generatorname").text
         fuel = g.find("fueltype").text
         
-        for performance in ["capability", "output"]:
-            index = pd.MultiIndex(labels=[[0],[0],[0]], levels=[[name], [fuel], [performance]], names=["generatorname","fueltype","performance"])
+        performances = []
+        
+        if fuel in ["BIOFUEL", "GAS", "HYDRO", "NUCLEAR"]:
+            performances = ["capability", "output"]
+        elif fuel in ["SOLAR", "WIND"]:
+            performances = ["availcapacity", "output"]
+        
+        for performance in performances:
+            p_map = {
+                "output": "output",
+                "availcapacity": "capability",
+                "capability": "capability"
+            }
+            index = pd.MultiIndex(labels=[[0],[0],[0]], levels=[[name], [fuel], [p_map[performance]]], names=["generatorname","fueltype","performance"])
             data = {}
             for x in g.findAll(performance):
                 if(x.find("energymw")):
@@ -265,7 +279,7 @@ def gen(yyyymmdd):
     return df_c
 
 
-# In[10]:
+# In[8]:
 
 
 # Get weather data
