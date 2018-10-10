@@ -58,5 +58,10 @@
 		"place":"THUNDER BAY",
 		"name":"THUNDER BAY",
 		"stationid":49389
+	},
+	{
+		"place":"LONDON",
+		"name":"CS",
+		"stationid":10999
 	}
 ]
