@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[12]:
+# In[1]:
 
 
 from bs4 import BeautifulSoup
@@ -19,14 +19,14 @@ import sys
 import os
 
 
-# In[19]:
+# In[15]:
 
 
 cwd = "C:/Users/pchong/web-data/src/"
 #cwd = os.getcwd() + "\\"
 
 
-# In[3]:
+# In[16]:
 
 
 # Get NYMEX data
@@ -122,7 +122,7 @@ def nymex(yyyymmdd):
     return pd.concat(dfs, ignore_index=True)
 
 
-# In[4]:
+# In[17]:
 
 
 # Get NGX data
@@ -191,7 +191,7 @@ def ngx(yyyymmdd):
     
 
 
-# In[5]:
+# In[18]:
 
 
 # Combined NYMEX and NGX data into settlement data
@@ -200,7 +200,7 @@ def settlement(yyyymmdd):
     return pd.concat([nymex(yyyymmdd), ngx(yyyymmdd)], ignore_index=True)
 
 
-# In[6]:
+# In[19]:
 
 
 # Get HOEP data
@@ -224,7 +224,7 @@ def hoep(yyyymmdd):
     return df
 
 
-# In[59]:
+# In[20]:
 
 
 # Get Generator Output and Capability data
@@ -279,7 +279,7 @@ def gen(yyyymmdd):
     return df_c
 
 
-# In[8]:
+# In[21]:
 
 
 # Get weather data
@@ -372,4 +372,45 @@ def weather(yyyymmdd):
     return pd.concat(dfs).reset_index(drop=True)
         
     
+
+
+# In[23]:
+
+
+# Get NGX rate data
+
+def ngx_rate_today():
+    s = requests.session()
+    login_url = "https://secure.ngx.com/sso/login?service=https%3A%2F%2Fsecure.ngx.com%3A443%2Fngxcs%2Fj_spring_cas_security_check"
+    res = s.get(login_url)
+    login_form_url = "https://secure.ngx.com/sso/login;jsessionid={}?service=https%3A%2F%2Fsecure.ngx.com%3A443%2Fngxcs%2Fj_spring_cas_security_check".format(res.cookies.get("JSESSIONID"))
+    soup = BeautifulSoup(res.text, 'html.parser')
+    form = soup.find("form", {"id":"fm1"})
+    lt = form.find("input", {"name":"lt"}).get("value")
+    execution = form.find("input", {"name":"execution"}).get("value")
+    eventId = "submit"
+    data = {
+        "username":"pchong@aegent.ca",
+        "password":"NGXnew2012",
+        "lt":lt,
+        "execution":execution,
+        "_eventId":eventId
+    }
+
+    s.post(login_form_url, data)
+
+
+    rate_url = "https://secure.ngx.com/ngxcs/exchangeRate.html"
+    res = s.get(rate_url)
+    s.close()
+
+    soup = bs4.BeautifulSoup(res.text, 'html.parser')
+    table = soup.find("table", attrs={"id":"exchangeRateListTable"})
+    columns = [x.text.strip() for x in table.find("thead").findAll("th")]
+    data = []
+    for tr in table.find("tbody").findAll("tr"):
+        data.append([x.text.strip() for x in tr.findAll("td")])
+    df = pd.DataFrame(data, columns=columns)
+    return df
+
 

@@ -1,0 +1,1 @@
+C:\Users\pchong\AppData\Local\Continuum\anaconda3\python.exe C:\Users\pchong\web-data\src\Automated.py ngxrate
